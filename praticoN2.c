@@ -13,7 +13,8 @@ typedef struct {
 } Poligono;
 
 float AreaTriangulo(Ponto A, Ponto B, Ponto C) {
-    return 0.5 * ((A.X * (B.Y - C.Y)) + (B.X * (C.Y - A.Y)) + (C.X * (A.Y - B.Y)));
+    float determinante = (A.X * B.Y + B.X * C.Y + C.X * A.Y) - (A.Y * B.X + B.Y * C.X + C.Y * A.X);
+    return fabs(determinante) / 2.0;
 }
 
 float AreaPoligono(Poligono poligono) {
@@ -31,7 +32,7 @@ int main() {
     Ponto *vertices;
     Poligono poligono;
 
-    arquivo = fopen("vertices.txt", "r");
+    arquivo = fopen("poligono.txt", "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
